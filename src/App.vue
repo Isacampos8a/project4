@@ -15,13 +15,6 @@ const handleTask = (taskData) => {
   })
 }
 
-const taskWithDuration = computed(() => {
-  return tasks.value.map(task => ({
-    ...task,
-    duration: computeDuration(task.startTime, task.endTime)
-
-  }))
-})
 
 const computeDuration = (startTime, endTime) => {
   const start = new Date(startTime)
@@ -35,13 +28,33 @@ const computeDuration = (startTime, endTime) => {
   return `${hours} hours and ${minutes} minutes`
 }
 
+const formatTime = (date) => {
+  const time = new Date(date)
+  return time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+}
+
+
+
+const taskWithDuration = computed(() => {
+  return tasks.value.map(task => ({
+    ...task,
+    startTime: formatTime(task.startTime),
+    endTime: formatTime(task.endTime),
+    duration: computeDuration(task.startTime, task.endTime)
+  }))
+})
+
 
 </script>
 
 <template>
-<Header></Header>
-<AddTask @taskSubmitted="handleTask" ></AddTask>
-<TaskList :tasks="taskWithDuration"></TaskList>
+  <Header></Header>
 
+
+  <div class="container">
+    <AddTask @taskSubmitted="handleTask" ></AddTask>
+    <TaskList :tasks="taskWithDuration"></TaskList>
+  </div>
+  
 </template>
 
