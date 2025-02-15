@@ -8,6 +8,11 @@
         }
     })
 
+    const emit = defineEmits(['taskDeleted'])
+
+    const deleteTask = (index) => {
+        emit('taskDeleted', index)
+    }
 
 </script>
 
@@ -19,6 +24,8 @@
             Start Time: {{  task.startTime }}<br />
             End Time: {{ task.endTime }}<br />
             Time Duration: {{ task.duration }}
+
+            <button @click="deleteTask(index)" class="delete-btn">Delete</button>
         </li>
     </ul>
 

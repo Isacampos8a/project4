@@ -3,7 +3,7 @@ import Header from './components/Header.vue';
 import AddTask from './components/AddTask.vue';
 import TaskList from './components/TaskList.vue';
 
-import {ref, computed} from 'vue'
+import {ref, computed, onMounted} from 'vue'
 
 const tasks = ref([])
 
@@ -13,6 +13,8 @@ const handleTask = (taskData) => {
     startTime: taskData.startTime,
     endTime: taskData.endTime
   })
+
+  saveToLocalStorage()
 }
 
 
@@ -44,6 +46,23 @@ const taskWithDuration = computed(() => {
   }))
 })
 
+const handleDelete = (index) => {
+  tasks.value.splice(index, 1);
+  saveToLocalStorage()
+}
+
+const saveToLocalStorage = () => {
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
+}
+
+onMounted(() => {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+
+  if(savedTasks){
+    tasks.value = savedTasks
+  }
+})
+
 
 </script>
 
@@ -53,7 +72,7 @@ const taskWithDuration = computed(() => {
 
   <div class="container">
     <AddTask @taskSubmitted="handleTask" ></AddTask>
-    <TaskList :tasks="taskWithDuration"></TaskList>
+    <TaskList :tasks="taskWithDuration" @taskDeleted="handleDelete"></TaskList>
   </div>
   
 </template>

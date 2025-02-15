@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 body {
   background-color: antiquewhite;
@@ -48,6 +48,7 @@ input  {
 
 .list li {
   background-color: antiquewhite;
+  font-family: "inter", sans-serif;
   border: 1px solid;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
@@ -60,6 +61,7 @@ input  {
 }
 
 .btn {
+  cursor: pointer;
   margin: 1rem;
   padding: 10px;
   color: #2f3b3f;
@@ -68,4 +70,25 @@ input  {
   border-radius: 5px;
   background-color: #fed176;
   width: 100%;
+}
+
+.delete-btn {
+  cursor: pointer;
+  background-color: #e74c3c;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 2px 5px;
+  position: absolute;
+  top: 25%;
+  right: -11%;
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.list li:hover .delete-btn {
+  opacity: 1;
 }
