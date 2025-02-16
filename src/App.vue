@@ -2,8 +2,9 @@
 import Header from './components/Header.vue';
 import AddTask from './components/AddTask.vue';
 import TaskList from './components/TaskList.vue';
+import Clock from './components/Clock.vue';
 
-import {ref, computed, onMounted} from 'vue'
+import {ref, computed, onMounted, onUnmounted} from 'vue'
 
 const tasks = ref([])
 
@@ -32,7 +33,7 @@ const computeDuration = (startTime, endTime) => {
 
 const formatTime = (date) => {
   const time = new Date(date)
-  return time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+  return time.toLocaleDateString([], {hour: '2-digit', minute: '2-digit'})
 }
 
 
@@ -64,15 +65,16 @@ onMounted(() => {
 })
 
 
+
 </script>
 
 <template>
   <Header></Header>
-
-
+  <Clock></Clock>
   <div class="container">
     <AddTask @taskSubmitted="handleTask" ></AddTask>
     <TaskList :tasks="taskWithDuration" @taskDeleted="handleDelete"></TaskList>
+
   </div>
   
 </template>
