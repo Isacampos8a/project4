@@ -3,6 +3,7 @@ import Header from './components/Header.vue';
 import AddTask from './components/AddTask.vue';
 import TaskList from './components/TaskList.vue';
 import Clock from './components/Clock.vue';
+import Sum from './components/DurationSum.vue';
 
 import {ref, computed, onMounted, onUnmounted} from 'vue'
 
@@ -74,7 +75,7 @@ onMounted(() => {
   <div class="container">
     <AddTask @taskSubmitted="handleTask" ></AddTask>
     <TaskList :tasks="taskWithDuration" @taskDeleted="handleDelete"></TaskList>
-
+    <Sum></Sum>
   </div>
   
 </template>

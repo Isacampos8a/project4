@@ -3,5 +3,7 @@
 </script>
 
 <template>
-    <h3>Duration Sum</h3>
+    <div class="Sum">
+        <h3>Duration Sum</h3>\
+    <div>
 </template>
