@@ -1,7 +1,7 @@
-<setup>
+<script setup>
 
-</setup>
+</script>
 
 <template>
- <h3>Duration Sum</h3>
+    <h3>Duration Sum</h3>
 </template>
